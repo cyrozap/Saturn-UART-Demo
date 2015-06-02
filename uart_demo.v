@@ -33,8 +33,6 @@ module uart_demo(
 	wire is_transmitting;
 	wire recv_error;
 
-	reg [7:0] display_byte; // The byte to be displayed
-
 	uart #(
 		.baud_rate(19200),                // This must always be 19200
 		.sys_clk_freq(100000000)          // The master clock frequency
@@ -55,7 +53,6 @@ module uart_demo(
 
 	always @(posedge CLK_100MHz) begin
 		if (received) begin
-			display_byte <= rx_byte;
 			tx_byte <= rx_byte;
 			transmit <= 1;
 		end
