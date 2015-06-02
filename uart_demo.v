@@ -17,16 +17,11 @@
  */
 
 `include "ipcore_dir/osdvu/uart.v"
-`include "ipcore_dir/mimas_v2_hex_display/display_hex_byte.v"
 
 module uart_demo(
 	input CLK_100MHz,
-	input [5:0] Switch,
 	input Rx,
-	output Tx,
-	output reg [0:7] LED,
-	output [7:0] SevenSegment,
-	output [2:0] SevenSegmentEnable
+	output Tx
 	);
 
 	wire reset;
@@ -39,19 +34,6 @@ module uart_demo(
 	wire recv_error;
 
 	reg [7:0] display_byte; // The byte to be displayed
-
-	assign reset = ~Switch[2]; // Switch is active low
-
-	display_hex_byte #(
-		.refresh_rate(1000),
-		.sys_clk_freq(100000000)
-	)
-	hex_display(
-		.clk(CLK_100MHz),
-		.hex_byte(display_byte),
-		.segments(SevenSegment),
-		.segments_enable(SevenSegmentEnable)
-	);
 
 	uart #(
 		.baud_rate(19200),                // This must always be 19200
@@ -75,7 +57,6 @@ module uart_demo(
 		if (received) begin
 			display_byte <= rx_byte;
 			tx_byte <= rx_byte;
-			LED <= rx_byte;
 			transmit <= 1;
 		end
 		if (is_transmitting) begin

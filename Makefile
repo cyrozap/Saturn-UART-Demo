@@ -34,7 +34,7 @@ DESIGN       := uart_demo
 LANGUAGE     := Verilog
 VLG_EXT      := v
 VHDL_EXT     := vhd
-DUT          := xc6slx9-csg324-2
+DUT          := xc6slx45-csg324-2
 
 TOP_PATH     := $(shell pwd)
 HDL_PATH     := $(TOP_PATH)
@@ -45,7 +45,7 @@ BLD_PATH     := $(TOP_PATH)/build
 # assumption is that it's placed in the HDL directory.
 TOP_FILE     := $(HDL_PATH)/uart_demo.v
 
-CON_FILE     := $(CON_PATH)/mimas_v2.ucf
+CON_FILE     := $(CON_PATH)/saturn.ucf
 TOP_MODULE   := uart_demo
 XST_FILE     := $(DESIGN).xstbp
 SYN_BASE      = -top $(TOP_MODULE) \
