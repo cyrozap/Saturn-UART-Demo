@@ -79,7 +79,7 @@ PROG_SRCS  := $(BLD_PATH)/$(IMP)/bp-impact.cmd
 
 # Flow options
 MAP_OPT :=
-BIN_OPT := -g Binary:yes
+BIN_OPT := -w -g Binary:yes
 BIT_OPT := -w
 PAR_OPT :=
 SYN_OPT := -opt_mode speed
